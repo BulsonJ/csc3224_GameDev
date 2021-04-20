@@ -9,14 +9,22 @@ export var FRICTION = 8
 var velocity = Vector2.ZERO
 var direction = 1
 
+var stats = PlayerStats
+
+onready var hurtbox = $Hurtbox
+
 onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	stats.connect("no_health", self, "queue_free")
+
+func _on_Hurtbox_area_entered(_area):
+	stats.health -= 1
+	$Sprite.modulate = Color(1,0,0)
+	hurtbox.start_invincibility(1)
+	hurtbox.create_hit_effect()
 
 func _on_StateMachine_state_changed(new_state):
 	$StateLabel.text=new_state.get_name()

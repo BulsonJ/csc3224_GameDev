@@ -1,10 +1,13 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Player/States/Idle.gd" type="Script" id=1]
 [ext_resource path="res://Utilities/StateMachine.gd" type="Script" id=2]
 [ext_resource path="res://Player/Player.png" type="Texture" id=3]
 [ext_resource path="res://Player/States/Move.gd" type="Script" id=4]
 [ext_resource path="res://Player/Player.gd" type="Script" id=5]
+[ext_resource path="res://Hitboxes/Hurtbox.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Hitboxes/Hitbox.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Hitboxes/SwordHitbox.gd" type="Script" id=8]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 2.0
@@ -164,17 +167,26 @@ start_node = "Idle"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=5]
 
+[sub_resource type="CapsuleShape2D" id=17]
+radius = 4.0
+height = 6.0
+
+[sub_resource type="CapsuleShape2D" id=16]
+radius = 3.0
+height = 8.0
+
 [node name="Player" type="KinematicBody2D"]
+collision_layer = 2
 script = ExtResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, 2 )
 texture = ExtResource( 3 )
 offset = Vector2( 0, -7 )
 vframes = 4
 hframes = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -2 )
 rotation = 1.5708
 shape = SubResource( 1 )
 
@@ -192,6 +204,28 @@ parameters/playback = SubResource( 5 )
 parameters/Idle/blend_position = -0.000993073
 parameters/Move/blend_position = 0
 
+[node name="HitboxPivot" type="Position2D" parent="."]
+visible = false
+position = Vector2( 0, -7 )
+
+[node name="SwordHitbox" parent="HitboxPivot" instance=ExtResource( 7 )]
+position = Vector2( 6, 0 )
+collision_mask = 8
+script = ExtResource( 8 )
+
+[node name="CollisionShape2D" parent="HitboxPivot/SwordHitbox" index="0"]
+position = Vector2( 1, 0 )
+shape = SubResource( 17 )
+disabled = true
+
+[node name="Hurtbox" parent="." instance=ExtResource( 6 )]
+visible = false
+collision_layer = 4
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2( 0, -7 )
+shape = SubResource( 16 )
+
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 2 )
 initialState = NodePath("Idle")
@@ -204,9 +238,9 @@ script = ExtResource( 4 )
 
 [node name="StateLabel" type="Label" parent="."]
 margin_left = -20.0
-margin_top = -30.0
+margin_top = -28.0
 margin_right = 20.0
-margin_bottom = -16.0
+margin_bottom = -14.0
 grow_horizontal = 2
 text = "Idle"
 align = 1
@@ -214,4 +248,9 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="state_changed" from="StateMachine" to="." method="_on_StateMachine_state_changed"]
+
+[editable path="HitboxPivot/SwordHitbox"]
+
+[editable path="Hurtbox"]
