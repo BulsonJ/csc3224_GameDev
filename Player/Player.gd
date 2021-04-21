@@ -19,6 +19,7 @@ onready var animationState = animationTree.get("parameters/playback")
 
 func _ready():
 	stats.connect("no_health", self, "queue_free")
+	animationTree.active = true
 
 func _on_Hurtbox_area_entered(_area):
 	stats.health -= 1

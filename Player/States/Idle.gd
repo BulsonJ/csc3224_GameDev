@@ -10,10 +10,12 @@ func _physics_process(delta):
 	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 	input_vector = input_vector.normalized()
 		
-	player.velocity = player.velocity.move_toward(Vector2.ZERO * player.MAX_SPEED, player.ACCELERATION * delta)
+	player.velocity = player.velocity.move_toward(Vector2.ZERO * player.MAX_SPEED, player.FRICTION * delta)
 	
 	player.velocity = player.move_and_slide(player.velocity, Vector2.UP)
 	
 	if input_vector != Vector2.ZERO:
 		player.animationTree.set("parameters/Move/blend_position", input_vector.x)
 		state_machine.changeState("Move")
+	if Input.is_action_just_pressed("attack"):
+		state_machine.changeState("Attack")
