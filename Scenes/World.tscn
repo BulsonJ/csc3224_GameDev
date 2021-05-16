@@ -4,9 +4,9 @@
 [ext_resource path="res://Environment/Tunnel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Environment/Walls/tileset.png" type="Texture" id=3]
 [ext_resource path="res://Environment/Walls/floor_tileset.png" type="Texture" id=4]
-[ext_resource path="res://Enemies/Enemy_1.tscn" type="PackedScene" id=5]
 [ext_resource path="res://HUD/Button_Debug.png" type="Texture" id=6]
 [ext_resource path="res://HUD/Button_Debug_Clicked.png" type="Texture" id=7]
+[ext_resource path="res://Enemies/Spawner.tscn" type="PackedScene" id=8]
 [ext_resource path="res://HUD/Performance.tscn" type="PackedScene" id=9]
 [ext_resource path="res://HUD/Debug.gd" type="Script" id=10]
 
@@ -177,16 +177,32 @@ collision_mask = 2
 format = 1
 tile_data = PoolIntArray( 65536, 0, 6, 65537, 0, 8, 65538, 0, 8, 65539, 0, 1, 65562, 0, 1, 65563, 0, 8, 65564, 0, 2, 65565, 0, 8, 131072, 0, 65540, 131073, 0, 65538, 131074, 0, 65541, 131075, 0, 65543, 131098, 0, 65541, 131099, 0, 65540, 131100, 0, 65536, 131101, 0, 65543, 262143, 0, 65544, 196638, 0, 65544, 327679, 0, 65544, 262174, 0, 65544, 393215, 0, 65544, 327710, 0, 65544, 458751, 0, 65544, 393246, 0, 65544, 524287, 0, 65544, 458782, 0, 65544, 589823, 0, 65544, 524318, 0, 65544, 655359, 0, 65544, 589854, 0, 65544, 720895, 0, 65544, 655390, 0, 65544, 786431, 0, 65544, 720926, 0, 65544, 851967, 0, 65544, 786462, 0, 65544, 917503, 0, 65544, 851998, 0, 65544, 983039, 0, 65544, 917504, 0, 8, 917505, 0, 8, 917506, 0, 6, 917507, 0, 8, 917508, 0, 8, 917509, 0, 7, 917510, 0, 8, 917511, 0, 8, 917512, 0, 3, 917513, 0, 8, 917514, 0, 8, 917515, 0, 8, 917516, 0, 8, 917517, 0, 1, 917518, 0, 8, 917519, 0, 8, 917520, 0, 3, 917521, 0, 8, 917522, 0, 8, 917523, 0, 6, 917524, 0, 3, 917525, 0, 4, 917526, 0, 3, 917527, 0, 8, 917528, 0, 7, 917529, 0, 8, 917530, 0, 2, 917531, 0, 8, 917532, 0, 2, 917533, 0, 8, 917534, 0, 65544, 983040, 0, 65540, 983041, 0, 65536, 983042, 0, 65540, 983043, 0, 65540, 983044, 0, 65539, 983045, 0, 65540, 983046, 0, 65540, 983047, 0, 65541, 983048, 0, 65538, 983049, 0, 65540, 983050, 0, 65540, 983051, 0, 65537, 983052, 0, 65540, 983053, 0, 65540, 983054, 0, 65540, 983055, 0, 65542, 983056, 0, 65540, 983057, 0, 65540, 983058, 0, 65541, 983059, 0, 65540, 983060, 0, 65540, 983061, 0, 65540, 983062, 0, 65540, 983063, 0, 65537, 983064, 0, 65540, 983065, 0, 65540, 983066, 0, 65536, 983067, 0, 65540, 983068, 0, 65540, 983069, 0, 65541, 1048576, 0, 65540, 1048577, 0, 65540, 1048578, 0, 65540, 1048579, 0, 65540, 1048580, 0, 65540, 1048581, 0, 65540, 1048582, 0, 65540, 1048583, 0, 65540, 1048584, 0, 65540, 1048585, 0, 65540, 1048586, 0, 65540, 1048587, 0, 65540, 1048588, 0, 65540, 1048589, 0, 65540, 1048590, 0, 65540, 1048591, 0, 65540, 1048592, 0, 65540, 1048593, 0, 65540, 1048594, 0, 65540, 1048595, 0, 65540, 1048596, 0, 65540, 1048597, 0, 65540, 1048598, 0, 65540, 1048599, 0, 65540, 1048600, 0, 65540, 1048601, 0, 65540, 1048602, 0, 65540, 1048603, 0, 65540, 1048604, 0, 65540, 1048605, 0, 65540 )
 
-[node name="Enemies" type="Node2D" parent="YSort"]
+[node name="Spawner" parent="YSort" instance=ExtResource( 8 )]
 
-[node name="Enemy_1" parent="YSort/Enemies" instance=ExtResource( 5 )]
-position = Vector2( 191, 130 )
+[node name="SpawnPoint" parent="YSort/Spawner/SpawnPoints" index="0"]
+position = Vector2( 240, 58 )
+collision_mask = 10
 
-[node name="Enemy_2" parent="YSort/Enemies" instance=ExtResource( 5 )]
-position = Vector2( 116, 171 )
+[node name="SpawnPoint2" parent="YSort/Spawner/SpawnPoints" index="1"]
+position = Vector2( 6, 139 )
 
-[node name="Enemy_3" parent="YSort/Enemies" instance=ExtResource( 5 )]
-position = Vector2( 193, 205 )
+[node name="SpawnPoint3" parent="YSort/Spawner/SpawnPoints" index="2"]
+position = Vector2( 240, 227 )
+
+[node name="SpawnPoint4" parent="YSort/Spawner/SpawnPoints" index="3"]
+position = Vector2( 473, 140 )
+
+[node name="SpawnPoint5" parent="YSort/Spawner/SpawnPoints" index="4"]
+position = Vector2( 30, 72 )
+
+[node name="SpawnPoint6" parent="YSort/Spawner/SpawnPoints" index="5"]
+position = Vector2( 441, 72 )
+
+[node name="SpawnPoint7" parent="YSort/Spawner/SpawnPoints" index="6"]
+position = Vector2( 31, 213 )
+
+[node name="SpawnPoint8" parent="YSort/Spawner/SpawnPoints" index="7"]
+position = Vector2( 445, 219 )
 
 [node name="Debug" type="Control" parent="."]
 margin_right = 40.0
@@ -212,3 +228,5 @@ __meta__ = {
 }
 
 [connection signal="toggled" from="Debug/Button_Debug" to="Debug" method="_on_Button_Debug_toggled"]
+
+[editable path="YSort/Spawner"]

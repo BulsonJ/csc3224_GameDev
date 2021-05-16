@@ -1,7 +1,7 @@
 [gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Enemies/Enemy.png" type="Texture" id=1]
-[ext_resource path="res://Enemies/Enemy_1.gd" type="Script" id=2]
+[ext_resource path="res://Enemies/Fighter.gd" type="Script" id=2]
 [ext_resource path="res://Hitboxes/Hurtbox.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Stats.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Enemies/AI/PlayerDetectionZone.tscn" type="PackedScene" id=5]
@@ -125,7 +125,8 @@ radius = 44.0114
 [sub_resource type="CircleShape2D" id=25]
 radius = 19.0263
 
-[node name="Enemy_1" type="KinematicBody2D"]
+[node name="Fighter" type="KinematicBody2D"]
+collision_layer = 8
 script = ExtResource( 2 )
 ACCELERATION = 48
 MAX_SPEED = 12
@@ -140,19 +141,22 @@ offset = Vector2( 0, -7 )
 rotation = 1.5708
 shape = SubResource( 21 )
 
+[node name="AttackTimer" type="Timer" parent="."]
+
 [node name="HitboxPivot" type="Position2D" parent="."]
+position = Vector2( 0, -5 )
 
 [node name="Hitbox" parent="HitboxPivot" instance=ExtResource( 7 )]
 collision_mask = 4
 
 [node name="CollisionShape2D" parent="HitboxPivot/Hitbox" index="0"]
-position = Vector2( 7, -5 )
+position = Vector2( 7, 0 )
 shape = SubResource( 22 )
 
 [node name="Hurtbox" parent="." instance=ExtResource( 3 )]
 visible = false
 position = Vector2( 0, 2 )
-collision_layer = 8
+collision_layer = 16
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2( 0, -7 )
@@ -192,6 +196,7 @@ __meta__ = {
 
 [connection signal="state_changed" from="." to="." method="_on_Enemy_1_state_changed"]
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_AttackTimer_timeout"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]
 [connection signal="body_entered" from="PlayerDetectionZone" to="." method="_on_PlayerDetectionZone_body_entered"]

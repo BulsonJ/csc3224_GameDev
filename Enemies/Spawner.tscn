@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Enemies/Spawner.gd" type="Script" id=1]
+[ext_resource path="res://Enemies/Fighter.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Enemies/SpawnPoint.tscn" type="PackedScene" id=3]
+
+[node name="Spawner" type="Node"]
+script = ExtResource( 1 )
+ENEMY_OBJECT = ExtResource( 2 )
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="SpawnPoint" parent="SpawnPoints" instance=ExtResource( 3 )]
+
+[node name="SpawnPoint2" parent="SpawnPoints" instance=ExtResource( 3 )]
+
+[node name="SpawnPoint3" parent="SpawnPoints" instance=ExtResource( 3 )]
+
+[node name="SpawnPoint4" parent="SpawnPoints" instance=ExtResource( 3 )]
+
+[node name="SpawnPoint5" parent="SpawnPoints" instance=ExtResource( 3 )]
+
+[node name="SpawnPoint6" parent="SpawnPoints" instance=ExtResource( 3 )]
+
+[node name="SpawnPoint7" parent="SpawnPoints" instance=ExtResource( 3 )]
+
+[node name="SpawnPoint8" parent="SpawnPoints" instance=ExtResource( 3 )]
+
+[node name="SpawnedObjects" type="YSort" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
