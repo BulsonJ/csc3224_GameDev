@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://HUD/Performance.gd" type="Script" id=1]
+[ext_resource path="res://Utilities/font.tres" type="DynamicFont" id=2]
+
+[node name="Performance" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FPS_Label" type="Label" parent="."]
+margin_left = 3.0
+margin_right = 43.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "FPS: 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}

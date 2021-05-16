@@ -23,7 +23,6 @@ func _ready():
 
 func _on_Hurtbox_area_entered(_area):
 	stats.health -= 1
-	$Sprite.modulate = Color(1,0,0)
 	hurtbox.start_invincibility(1)
 	hurtbox.create_hit_effect()
 

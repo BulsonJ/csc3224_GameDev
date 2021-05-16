@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Player/States/Idle.gd" type="Script" id=1]
 [ext_resource path="res://Utilities/StateMachine.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Hitboxes/Hitbox.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Hitboxes/SwordHitbox.gd" type="Script" id=8]
 [ext_resource path="res://Player/States/Attack.gd" type="Script" id=9]
+[ext_resource path="res://Utilities/font.tres" type="DynamicFont" id=10]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 2.0
@@ -325,15 +326,16 @@ height = 8.0
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
 script = ExtResource( 5 )
-ACCELERATION = 48
+ACCELERATION = 96
+MAX_SPEED = 72
 FRICTION = 200
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, 2 )
 texture = ExtResource( 3 )
 offset = Vector2( 0, -7 )
-vframes = 4
 hframes = 7
+vframes = 4
 frame = 14
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -395,15 +397,17 @@ margin_top = -28.0
 margin_right = 20.0
 margin_bottom = -14.0
 grow_horizontal = 2
+custom_fonts/font = ExtResource( 10 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Idle"
 align = 1
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="state_changed" from="StateMachine" to="." method="_on_StateMachine_state_changed"]
 
 [editable path="HitboxPivot/SwordHitbox"]
-
 [editable path="Hurtbox"]
