@@ -8,6 +8,8 @@ onready var characterDebug = character.get_node("StateLabel")
 onready var enemies = get_node("../World/YSort/Walls")
 onready var health_label = get_node("../HUD/HealthBar/Label")
 
+var characterDead = false
+
 func _on_Button_Debug_toggled(button_pressed):
 	hud.debug_overlay = button_pressed
 
@@ -24,7 +26,8 @@ func _process(delta):
 	if hud.debug_overlay == false:
 		perfDisplay.hide()
 		health_label.hide()
-		characterDebug.hide()
+		if characterDead == false:
+			characterDebug.hide()
 		for enemy in enemies.get_children():
 			if enemy != null:
 				var debug = enemy.get_node("StateLabel")
@@ -33,7 +36,8 @@ func _process(delta):
 	else:
 		perfDisplay.show()
 		health_label.show()
-		characterDebug.show()
+		if characterDead == false:
+			characterDebug.show()
 		for enemy in enemies.get_children():
 			if enemy != null:
 				var debug = enemy.get_node("StateLabel")
@@ -41,8 +45,11 @@ func _process(delta):
 					debug.show()
 		
 		var objectCounter = 0;
-		if character != null:
+		if characterDead == false:
 			objectCounter += 1
 		for enemy in enemies.get_children():
 			objectCounter += 1
 		$Performance/Objects_Label.text = "Objects: " + str(objectCounter)
+
+func _on_Player_player_dead():
+	characterDead = true

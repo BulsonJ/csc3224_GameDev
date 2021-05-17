@@ -20,3 +20,10 @@ func _process(delta):
 	var str_elapsed = "%02dm:%02ds" % [minutes, seconds]
 	time_played = str_elapsed
 	
+func reset():
+	enemies_killed = 0
+	
+	round_achieved = 1
+	time_start = 0
+	time_start = OS.get_unix_time()
+	

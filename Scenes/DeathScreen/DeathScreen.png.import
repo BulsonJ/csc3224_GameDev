@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/DeathScreen.png-544e370cb4f91229d46b502fd43045a4.stex"
+path="res://.import/DeathScreen.png-d9425877c6ab7a64e725d39537242791.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/DeathScreen/DeathScreen.png"
-dest_files=[ "res://.import/DeathScreen.png-544e370cb4f91229d46b502fd43045a4.stex" ]
+source_file="res://Scenes/DeathScreen/DeathScreen.png"
+dest_files=[ "res://.import/DeathScreen.png-d9425877c6ab7a64e725d39537242791.stex" ]
 
 [params]
 

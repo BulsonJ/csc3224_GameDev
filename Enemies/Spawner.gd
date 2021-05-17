@@ -2,8 +2,9 @@ extends Node
 
 export (PackedScene) var ENEMY_OBJECT
 export var spawnNode := NodePath()
-export (float) var SPAWN_TIME = 1
 
+
+onready var SPAWN_TIME = GameVariables.ENEMY_SPAWN_TIMER
 onready var NUMBER_OF_ENEMIES = GameVariables.enemy_amount
 
 onready var spawnPoints = $SpawnPoints

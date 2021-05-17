@@ -45,6 +45,9 @@ __meta__ = {
 [node name="ScreenTransitionRect" parent="." instance=ExtResource( 4 )]
 visible = false
 
+[node name="Timer_Loss" type="Timer" parent="."]
+
 [connection signal="timeout" from="Timer_EndRound" to="." method="_on_Timer_EndRound_timeout"]
 [connection signal="timeout" from="Timer_Fade" to="." method="_on_Timer_Fade_timeout"]
 [connection signal="timeout" from="Timer_StartRound" to="." method="_on_Timer_StartRound_timeout"]
+[connection signal="timeout" from="Timer_Loss" to="." method="_on_Timer_Loss_timeout"]

@@ -17,3 +17,7 @@ func _on_Player_health_changed(current_health):
 
 func _process(delta):
 	enemiesLabel.text = str(Achievements.enemies_killed)
+
+
+func _on_Player_player_dead():
+	pass # Replace with function body.

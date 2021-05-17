@@ -17,9 +17,15 @@ onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
 
+signal player_dead
+
 func _ready():
-	stats.connect("no_health", self, "queue_free")
+	stats.connect("no_health", self, "_player_death")
 	animationTree.active = true
+	
+func _player_death():
+	emit_signal("player_dead")
+	queue_free()
 
 func _on_Hurtbox_area_entered(area):
 	stats.health -= area.damage

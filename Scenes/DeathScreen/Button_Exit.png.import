@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Button_Exit.png-f6578b4864e971cb335aeb87a4d74ebe.stex"
+path="res://.import/Button_Exit.png-db1541c89489ab0252c1f5fae738abf2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/DeathScreen/Button_Exit.png"
-dest_files=[ "res://.import/Button_Exit.png-f6578b4864e971cb335aeb87a4d74ebe.stex" ]
+source_file="res://Scenes/DeathScreen/Button_Exit.png"
+dest_files=[ "res://.import/Button_Exit.png-db1541c89489ab0252c1f5fae738abf2.stex" ]
 
 [params]
 

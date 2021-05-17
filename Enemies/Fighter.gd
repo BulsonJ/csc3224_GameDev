@@ -29,12 +29,11 @@ var cooldown = false
 enum state{
 	Idle,
 	Wander,
-	Chase
+	Chase,
 	Attack
 }
 
 var currentState = state.Idle
-
 
 func _ready():
 	hitbox.disabled = true

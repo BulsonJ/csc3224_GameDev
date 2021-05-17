@@ -2,6 +2,7 @@ extends Node
 
 export var START_ROUND_DURATION = 5
 export var END_ROUND_DURATION = 5
+export var DEATH_DURATION = 5
 
 export var enemyNode := NodePath()
 onready var enemies = get_node(enemyNode)
@@ -13,6 +14,8 @@ onready var endRoundCountdown = $EndRound_Screen/Label
 onready var startRoundTimer = $Timer_StartRound
 onready var startRoundScreen = $StartRound_Screen
 onready var startRoundLabel = $StartRound_Screen/Label
+
+onready var deathTimer = $Timer_Loss
 
 onready var _transition_rect := $ScreenTransitionRect
 onready var fadeTimer = $Timer_Fade
@@ -28,6 +31,8 @@ func _ready():
 	startRoundLabel.text = "Round " + str(GameVariables.current_round) + " starting..."
 	startRoundScreen.show()
 	startRoundTimer.start(START_ROUND_DURATION)
+	
+	PlayerStats.health = 100
 	
 	_transition_rect.show()
 
@@ -57,3 +62,14 @@ func _on_Timer_StartRound_timeout():
 
 func _on_Timer_Fade_timeout():
 	_transition_rect.transition()
+
+func _on_Player_player_dead():
+	fadeTimer.start(DEATH_DURATION-1)
+	deathTimer.start(DEATH_DURATION)
+	
+func _on_Timer_Loss_timeout():
+	get_tree().change_scene("res://Scenes/DeathScreen/LossScreen.tscn")
+	
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		get_tree().change_scene("res://Scenes/MainMenu.tscn")
