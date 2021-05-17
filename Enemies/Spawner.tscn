@@ -7,7 +7,6 @@
 [node name="Spawner" type="Node"]
 script = ExtResource( 1 )
 ENEMY_OBJECT = ExtResource( 2 )
-SPAWN_TIME = 0.5
 
 [node name="Timer" type="Timer" parent="."]
 

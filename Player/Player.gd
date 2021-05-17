@@ -36,7 +36,7 @@ func _on_Hurtbox_area_entered(area):
 func _on_StateMachine_state_changed(new_state):
 	$StateLabel.text=new_state.get_name()
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	if velocity != Vector2.ZERO and $StateMachine.currentState != get_node("StateMachine/Idle") and $StateMachine.currentState != get_node("StateMachine/Attack"):
 		if $Sound_Move.playing == false:
 			$Sound_Move.play()

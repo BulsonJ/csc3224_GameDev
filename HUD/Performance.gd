@@ -9,6 +9,6 @@ func _ready():
 	pass # Replace with function body.
 
 
-func _process(delta):
+func _process(_delta):
 	fps.text = "FPS: " + str(Engine.get_frames_per_second())
 	time.text = "Time Played: " + Achievements.time_played

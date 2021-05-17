@@ -12,7 +12,7 @@ func _ready():
 	set_process(true)
 	
 
-func _process(delta):
+func _process(_delta):
 	time_now = OS.get_unix_time()
 	var elapsed = time_now - time_start
 	var minutes = elapsed / 60

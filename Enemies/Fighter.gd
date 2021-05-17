@@ -84,7 +84,6 @@ func _physics_process(delta):
 				attack_player()
 			
 		state.Attack:
-			cooldown == true
 			velocity = velocity.move_toward(Vector2.ZERO * MAX_SPEED, FRICTION * delta)
 			if sprite.frame == 3:
 				$Sound_Attack.play()

@@ -17,10 +17,10 @@ var spawnEnemy = true
 
 signal enemy_spawned()
 
-func spawn(spawnPoint: int):
+func spawn(spawnPoint):
 	var enemy_instance = ENEMY_OBJECT.instance()
 	enemy_instance.set_name("Fighter")
-	enemy_instance.position = spawnPoints.get_child(spawnPoint).position
+	enemy_instance.position = spawnPoint.position
 	self.get_node(spawnNode).add_child(enemy_instance)
 	enemiesSpawned += 1
 	timer.start(SPAWN_TIME)
@@ -33,18 +33,26 @@ func checkFreeSpawnPoint():
 	return false
 			
 func freeSpawnPoint() -> int:
-	var spawnFound = false
 	var counter : int = 0
 	for spawn in spawnPoints.get_children():
 		if spawn.blocked == false:
 			return counter
 		counter += 1
 	return counter
+	
+func freeSpawnPoints():
+	var freePoints = []
+	for spawn in spawnPoints.get_children():
+		if spawn.blocked == false:
+			freePoints.append(spawn)
+	return freePoints
 
 func _on_Timer_timeout():
 	if enemiesSpawned < NUMBER_OF_ENEMIES:
 		if checkFreeSpawnPoint():
-			spawn(freeSpawnPoint())
+			var spawnPoints = freeSpawnPoints()
+			var chosenPoint = spawnPoints[rng.randi_range(0, spawnPoints.size()-1)]
+			spawn(chosenPoint)
 			timer.start(SPAWN_TIME)
 	else:
 		pass

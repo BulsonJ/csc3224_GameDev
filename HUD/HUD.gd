@@ -15,7 +15,7 @@ func _on_Player_health_changed(current_health):
 	health_bar.value = current_health
 	debugLabel.text = str(current_health)
 
-func _process(delta):
+func _process(_delta):
 	enemiesLabel.text = str(Achievements.enemies_killed)
 
 
