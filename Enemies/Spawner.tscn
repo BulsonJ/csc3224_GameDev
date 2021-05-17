@@ -28,6 +28,4 @@ ENEMY_OBJECT = ExtResource( 2 )
 
 [node name="SpawnPoint8" parent="SpawnPoints" instance=ExtResource( 3 )]
 
-[node name="SpawnedObjects" type="YSort" parent="."]
-
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -15,6 +15,7 @@ func _physics_process(delta):
 		player.animationTree.set("parameters/Move/blend_position", input_vector.x)
 		player.animationTree.set("parameters/Attack/blend_position", input_vector.x)
 		player.velocity = player.velocity.move_toward(input_vector * player.MAX_SPEED, player.ACCELERATION * delta)
+		
 	
 	if input_vector == Vector2.ZERO:
 		state_machine.changeState("Idle")	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://Player/States/Idle.gd" type="Script" id=1]
 [ext_resource path="res://Utilities/StateMachine.gd" type="Script" id=2]
@@ -10,6 +10,9 @@
 [ext_resource path="res://Hitboxes/SwordHitbox.gd" type="Script" id=8]
 [ext_resource path="res://Player/States/Attack.gd" type="Script" id=9]
 [ext_resource path="res://Utilities/font.tres" type="DynamicFont" id=10]
+[ext_resource path="res://Sounds/sword_slash.mp3" type="AudioStream" id=11]
+[ext_resource path="res://Sounds/player_hurt2.mp3" type="AudioStream" id=12]
+[ext_resource path="res://Sounds/footstep.ogg" type="AudioStream" id=13]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 2.0
@@ -327,7 +330,7 @@ height = 8.0
 collision_layer = 2
 script = ExtResource( 5 )
 ACCELERATION = 96
-MAX_SPEED = 72
+MAX_SPEED = 32
 FRICTION = 200
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -391,6 +394,10 @@ script = ExtResource( 4 )
 [node name="Attack" type="Node" parent="StateMachine"]
 script = ExtResource( 9 )
 
+[node name="Sound_Attack" type="AudioStreamPlayer" parent="StateMachine/Attack"]
+stream = ExtResource( 11 )
+volume_db = -25.243
+
 [node name="StateLabel" type="Label" parent="."]
 margin_left = -20.0
 margin_top = -28.0
@@ -405,6 +412,13 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Sound_Move" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+volume_db = -30.0
+
+[node name="Sound_Hurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="state_changed" from="StateMachine" to="." method="_on_StateMachine_state_changed"]
