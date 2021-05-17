@@ -1,7 +1,10 @@
 extends PlayerState
 
 func enter():
-	player.animationState.travel("Attack")
+	if player.direction < 0:
+		player.animationPlayer.play("attack_left")
+	else:
+		player.animationPlayer.play("attack_right")
 	$Sound_Attack.play()
 	
 func _physics_process(delta):

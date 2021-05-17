@@ -1,7 +1,10 @@
 extends PlayerState
 
 func enter():
-	player.animationState.travel("Idle")
+	if player.direction < 0:
+		player.animationPlayer.play("idle_left")
+	else:
+		player.animationPlayer.play("idle_right")
 
 # Runs process
 func _physics_process(delta):
@@ -15,7 +18,7 @@ func _physics_process(delta):
 	player.velocity = player.move_and_slide(player.velocity, Vector2.UP)
 	
 	if input_vector != Vector2.ZERO:
-		player.animationTree.set("parameters/Move/blend_position", input_vector.x)
+		player.direction = input_vector.x
 		state_machine.changeState("Move")
 	if Input.is_action_just_pressed("attack"):
 		state_machine.changeState("Attack")

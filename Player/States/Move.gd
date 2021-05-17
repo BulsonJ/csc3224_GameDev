@@ -1,7 +1,10 @@
 extends PlayerState
 
 func enter():
-	player.animationState.travel("Move")
+	if player.direction < 0:
+		player.animationPlayer.play("run_left")
+	else:
+		player.animationPlayer.play("run_right")
 
 # Runs process
 func _physics_process(delta):
@@ -11,11 +14,17 @@ func _physics_process(delta):
 	input_vector = input_vector.normalized()
 			
 	if input_vector != Vector2.ZERO:
-		player.animationTree.set("parameters/Idle/blend_position", input_vector.x)
-		player.animationTree.set("parameters/Move/blend_position", input_vector.x)
-		player.animationTree.set("parameters/Attack/blend_position", input_vector.x)
-		player.velocity = player.velocity.move_toward(input_vector * player.MAX_SPEED, player.ACCELERATION * delta)
+		# If input x is not 0, check if direction changed
+		if input_vector.x != 0:
+			player.direction = input_vector.x
+			
+			if player.direction < 0:
+				player.animationPlayer.play("run_left")
+			else:
+				player.animationPlayer.play("run_right")
+
 		
+		player.velocity = player.velocity.move_toward(input_vector * player.MAX_SPEED, player.ACCELERATION * delta)
 	
 	if input_vector == Vector2.ZERO:
 		state_machine.changeState("Idle")	
