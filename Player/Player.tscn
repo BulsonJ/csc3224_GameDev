@@ -397,6 +397,7 @@ script = ExtResource( 9 )
 [node name="Sound_Attack" type="AudioStreamPlayer" parent="StateMachine/Attack"]
 stream = ExtResource( 11 )
 volume_db = -25.243
+bus = "Effects"
 
 [node name="StateLabel" type="Label" parent="."]
 visible = false
@@ -416,10 +417,14 @@ __meta__ = {
 
 [node name="Sound_Move" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
-volume_db = -30.0
+volume_db = -40.0
+bus = "Effects"
 
 [node name="Sound_Hurt" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
+volume_db = -10.0
+pitch_scale = 0.9
+bus = "Effects"
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="state_changed" from="StateMachine" to="." method="_on_StateMachine_state_changed"]

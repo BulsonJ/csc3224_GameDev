@@ -4,6 +4,10 @@ export var INITIAL_ENEMIES = 5
 export var ENEMY_INCREASE = 4
 export var ENEMY_SPAWN_TIMER = 2
 
+onready var MASTER_VOLUME = 100 setget set_volume_master
+onready var SOUND_EFFECT_VOLUME = 100 setget set_volume_effects
+onready var MUSIC_VOLUME = 100 setget set_volume_music
+
 onready var enemy_amount = INITIAL_ENEMIES
 
 var current_round = 1
@@ -36,6 +40,19 @@ func set_difficulty(difficulty):
 			INITIAL_ENEMIES = 14
 			ENEMY_INCREASE = 8
 			ENEMY_SPAWN_TIMER = 0.5
+
+func set_volume_master(volume):
+	MASTER_VOLUME = volume
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear2db(MASTER_VOLUME/100.0))
+
+func set_volume_effects(volume):
+	SOUND_EFFECT_VOLUME = volume
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Effects"), linear2db(SOUND_EFFECT_VOLUME/100.0))
+	
+func set_volume_music(volume):
+	MUSIC_VOLUME = volume
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear2db(MUSIC_VOLUME/100.0))
+	
 
 func reset():
 	current_round = 1

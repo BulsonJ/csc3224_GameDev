@@ -261,8 +261,9 @@ scale = Vector2( 2, 2 )
 
 [node name="Music_Background" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
-volume_db = -40.403
+volume_db = -30.0
 autoplay = true
+bus = "Music"
 
 [node name="LevelSwitcher" parent="." instance=ExtResource( 11 )]
 enemyNode = NodePath("../World/YSort/Walls")
