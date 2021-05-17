@@ -399,6 +399,7 @@ stream = ExtResource( 11 )
 volume_db = -25.243
 
 [node name="StateLabel" type="Label" parent="."]
+visible = false
 margin_left = -20.0
 margin_top = -28.0
 margin_right = 20.0

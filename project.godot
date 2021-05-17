@@ -39,12 +39,14 @@ _global_script_class_icons={
 [application]
 
 config/name="csc3224_GameDev"
-run/main_scene="res://Scenes/World.tscn"
+run/main_scene="res://Scenes/MainMenu.tscn"
 
 [autoload]
 
 PlayerStats="*res://Player/PlayerStats.tscn"
 HudVariables="*res://HUD/HUDVariables.tscn"
+GameVariables="*res://GameVariables.tscn"
+Achievements="*res://Achievements.tscn"
 
 [display]
 

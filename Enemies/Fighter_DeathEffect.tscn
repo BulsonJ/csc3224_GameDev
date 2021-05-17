@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Effects/Effect.gd" type="Script" id=1]
 [ext_resource path="res://Enemies/Enemy.png" type="Texture" id=2]
 [ext_resource path="res://Sounds/enemy_death.mp3" type="AudioStream" id=3]
+[ext_resource path="res://Utilities/font.tres" type="DynamicFont" id=4]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
@@ -38,3 +39,18 @@ script = ExtResource( 1 )
 stream = ExtResource( 3 )
 volume_db = -20.0
 autoplay = true
+
+[node name="StateLabel" type="Label" parent="."]
+margin_left = -20.0
+margin_top = -28.0
+margin_right = 20.0
+margin_bottom = -14.0
+grow_horizontal = 2
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Dead"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -30,7 +30,19 @@ margin_right = 43.0
 margin_bottom = 22.0
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Objects: "
+text = "Objects: 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimePlayed_Label" type="Label" parent="."]
+margin_left = 3.0
+margin_top = 17.0
+margin_right = 54.0
+margin_bottom = 31.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Time Played: 0s"
 __meta__ = {
 "_edit_use_anchors_": false
 }

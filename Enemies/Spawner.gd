@@ -2,26 +2,19 @@ extends Node
 
 export (PackedScene) var ENEMY_OBJECT
 export var spawnNode := NodePath()
-export var SPAWN_TIME = 1
+export (float) var SPAWN_TIME = 1
 
-export var NUMBER_OF_ENEMIES = 10
+onready var NUMBER_OF_ENEMIES = GameVariables.enemy_amount
 
 onready var spawnPoints = $SpawnPoints
-onready var spawnedObjects = $SpawnedObjects
 onready var timer = $Timer
-onready var collisionTimer = $CollisionTimer
 
 var rng = RandomNumberGenerator.new() 
-var enemiesInWave
 var enemiesSpawned = 0
 var freeSpawnPoint = false
 var spawnEnemy = true
 
-func _ready():
-	timer.start(SPAWN_TIME)
-
-#func _process(delta):
-	#print(checkFreeSpawnPoint())
+signal enemy_spawned()
 
 func spawn(spawnPoint: int):
 	var enemy_instance = ENEMY_OBJECT.instance()
@@ -30,6 +23,7 @@ func spawn(spawnPoint: int):
 	self.get_node(spawnNode).add_child(enemy_instance)
 	enemiesSpawned += 1
 	timer.start(SPAWN_TIME)
+	emit_signal("enemy_spawned")
 	
 func checkFreeSpawnPoint():
 	for spawn in spawnPoints.get_children():
@@ -54,3 +48,5 @@ func _on_Timer_timeout():
 	else:
 		pass
 	
+func _on_LevelSwitcher_round_start():
+	timer.start(SPAWN_TIME)

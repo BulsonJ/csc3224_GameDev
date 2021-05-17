@@ -11,6 +11,7 @@ var knockback = Vector2.ZERO
 var velocity = Vector2.ZERO
 
 signal state_changed(new_state)
+signal enemy_killed()
 
 onready var hurtbox = $Hurtbox
 onready var sprite = $AnimatedSprite
@@ -119,6 +120,7 @@ func _on_Stats_no_health():
 	var enemyDeathEffect = Fighter_DeathEffect.instance()
 	get_parent().add_child(enemyDeathEffect)
 	enemyDeathEffect.global_position = global_position
+	emit_signal("enemy_killed")
 
 func pick_random_state(state_list):
 	state_list.shuffle()
