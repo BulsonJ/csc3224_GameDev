@@ -235,8 +235,8 @@ margin_top = 162.0
 margin_bottom = 176.0
 
 [connection signal="enemy_spawned" from="Spawner" to="LevelSwitcher" method="_on_Spawner_enemy_spawned"]
-[connection signal="player_dead" from="World/YSort/Player" to="Debug" method="_on_Player_player_dead"]
 [connection signal="player_dead" from="World/YSort/Player" to="LevelSwitcher" method="_on_Player_player_dead"]
+[connection signal="player_dead" from="World/YSort/Player" to="Debug" method="_on_Player_player_dead"]
 [connection signal="toggled" from="Debug/Button_Debug" to="Debug" method="_on_Button_Debug_toggled"]
 [connection signal="toggled" from="Debug/Cheat_Buttons/Button_GodMode" to="Debug" method="_on_Button_GodMode_toggled"]
 [connection signal="toggled" from="Debug/Cheat_Buttons/Button_PlusRound" to="Debug" method="_on_Button_PlusRound_toggled"]

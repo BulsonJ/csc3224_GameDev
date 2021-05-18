@@ -47,6 +47,7 @@ PlayerStats="*res://Player/PlayerStats.tscn"
 HudVariables="*res://HUD/HUDVariables.tscn"
 GameVariables="*res://GameVariables.tscn"
 Achievements="*res://Achievements.tscn"
+PauseMenu="*res://Scenes/PauseMenu.tscn"
 
 [display]
 

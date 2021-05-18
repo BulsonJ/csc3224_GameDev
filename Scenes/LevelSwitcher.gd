@@ -88,7 +88,3 @@ func _on_Player_player_dead():
 	
 func _on_Timer_Loss_timeout():
 	get_tree().change_scene("res://Scenes/DeathScreen/LossScreen.tscn")
-	
-func _input(event):
-	if event.is_action_pressed("ui_cancel"):
-		get_tree().change_scene("res://Scenes/MainMenu.tscn")
