@@ -39,6 +39,12 @@ func _ready():
 	var arena = rng.randi_range(0, arenas.size())
 	if arena != 0:
 		get_node(arenas[arena - 1]).show()
+		for i in arenas:
+			if i != arenas[arena-1]:
+				get_node(i).queue_free()
+	else:
+		for i in arenas:
+			get_node(i).queue_free()
 	
 	PlayerStats.health = 100
 	
