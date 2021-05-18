@@ -25,6 +25,7 @@ export (Array, NodePath) var arenas = []
 
 signal round_start()
 signal round_over()
+signal game_over()
 
 var enemyKilled = 0
 	
@@ -83,6 +84,9 @@ func _on_Timer_Fade_timeout():
 	_transition_rect.transition()
 
 func _on_Player_player_dead():
+	emit_signal("game_over")
+	$Loss_Sound.play()
+	$Loss_Text.show()
 	fadeTimer.start(DEATH_DURATION-1)
 	deathTimer.start(DEATH_DURATION)
 	

@@ -39,6 +39,7 @@ func handle_selection(_current_selection):
 	if _current_selection == 0:
 		Achievements.reset()
 		GameVariables.reset()
+		PlayerStats.health = 100
 		get_tree().change_scene("res://Scenes/Main.tscn")
 	elif _current_selection == 1:
 		get_tree().change_scene("res://Scenes/MainMenu.tscn")
