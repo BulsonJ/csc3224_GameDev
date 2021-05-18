@@ -21,3 +21,5 @@ func _physics_process(delta):
 		state_machine.changeState("Move")
 	if Input.is_action_just_pressed("attack"):
 		state_machine.changeState("Attack")
+	if Input.is_action_just_pressed("dash"):
+		state_machine.changeState("Dash")

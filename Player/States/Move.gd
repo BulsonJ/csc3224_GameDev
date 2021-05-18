@@ -14,6 +14,8 @@ func _physics_process(delta):
 	input_vector = input_vector.normalized()
 			
 	if input_vector != Vector2.ZERO:
+		player.roll_vector = input_vector
+		
 		# If input x is not 0, check if direction changed
 		if input_vector.x != 0:
 			player.direction = input_vector.x
@@ -30,6 +32,8 @@ func _physics_process(delta):
 		state_machine.changeState("Idle")	
 	if Input.is_action_just_pressed("attack"):
 		state_machine.changeState("Attack")
+	if Input.is_action_just_pressed("dash"):
+		state_machine.changeState("Dash")
 	
 	player.velocity = player.move_and_slide(player.velocity)
 	

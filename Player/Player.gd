@@ -8,6 +8,7 @@ export var FRICTION = 8
 
 var velocity = Vector2.ZERO
 var direction = 1
+var roll_vector = Vector2.RIGHT
 
 var stats = PlayerStats
 
