@@ -27,20 +27,20 @@ func set_difficulty(difficulty):
 	difficultyChosen = difficulty
 	match difficultyChosen:
 		difficultyLevels.Easy:
-			INITIAL_ENEMIES = 5
+			INITIAL_ENEMIES = 6
 			ENEMY_INCREASE = 4
-			ENEMY_SPAWN_TIMER = 2
-		difficultyLevels.Medium:
-			INITIAL_ENEMIES = 7
-			ENEMY_INCREASE = 5
 			ENEMY_SPAWN_TIMER = 1.5
-		difficultyLevels.Hard:
+		difficultyLevels.Medium:
 			INITIAL_ENEMIES = 10
-			ENEMY_INCREASE = 6
-			ENEMY_SPAWN_TIMER = 1
-		difficultyLevels.Extreme:
-			INITIAL_ENEMIES = 14
 			ENEMY_INCREASE = 8
+			ENEMY_SPAWN_TIMER = 1
+		difficultyLevels.Hard:
+			INITIAL_ENEMIES = 18
+			ENEMY_INCREASE = 12
+			ENEMY_SPAWN_TIMER = 0.5
+		difficultyLevels.Extreme:
+			INITIAL_ENEMIES = 18
+			ENEMY_INCREASE = 12
 			ENEMY_SPAWN_TIMER = 0.5
 
 func set_volume_master(volume):

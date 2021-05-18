@@ -15,6 +15,10 @@ var characterDead = false
 
 func _on_Button_Debug_toggled(button_pressed):
 	hud.debug_overlay = button_pressed
+	
+func _ready():
+	if hud.debug_overlay == true:
+		$Button_Debug.pressed == true
 
 func _input(event):
 	if event.is_action_pressed("debug_show") && hud.debug_overlay == false:
