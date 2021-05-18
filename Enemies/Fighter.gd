@@ -26,6 +26,8 @@ const Fighter_DeathEffect = preload("res://Enemies/Fighter_DeathEffect.tscn")
 
 var cooldown = false
 
+var direction = 0
+
 enum state{
 	Idle,
 	Wander,
@@ -57,6 +59,7 @@ func _physics_process(delta):
 				update_wander()
 				
 		state.Wander:
+			direction = velocity.x
 			seek_player()
 			if wanderController.get_time_left() == 0:
 				update_wander()
@@ -67,6 +70,7 @@ func _physics_process(delta):
 					update_wander()
 					
 		state.Chase:
+			direction = velocity.x
 			var player = playerDetectionZone.player
 			if player != null:
 				accelerate_towards_point(player.global_position, delta)
@@ -118,6 +122,10 @@ func _on_Stats_no_health():
 	var enemyDeathEffect = Fighter_DeathEffect.instance()
 	get_parent().add_child(enemyDeathEffect)
 	enemyDeathEffect.global_position = global_position
+	if direction < 0:
+		enemyDeathEffect.scale = Vector2(-1, 1)
+	else:
+		enemyDeathEffect.scale = Vector2(1, 1)
 	emit_signal("enemy_killed")
 
 func pick_random_state(state_list):

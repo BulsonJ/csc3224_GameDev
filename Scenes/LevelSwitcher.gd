@@ -46,7 +46,9 @@ func _ready():
 		for i in arenas:
 			get_node(i).queue_free()
 	
-	PlayerStats.health = 100
+	if GameVariables.difficultyChosen != GameVariables.difficultyLevels.Extreme:
+		PlayerStats.health = 100
+	GameVariables.cheat_GodMode = false
 	
 	_transition_rect.show()
 

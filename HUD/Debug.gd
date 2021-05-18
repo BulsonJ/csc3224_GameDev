@@ -33,7 +33,7 @@ func _input(event):
 		
 	if event.is_action_pressed("plusRound"):
 		levelSwitch.end_round()
-		$Cheat_Buttons/Button_GodMode.pressed = true
+		$Cheat_Buttons/Button_PlusRound.pressed = true
 
 func _process(delta):
 	
