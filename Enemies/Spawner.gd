@@ -48,6 +48,7 @@ func freeSpawnPoints():
 	return freePoints
 
 func _on_Timer_timeout():
+	rng.randomize()
 	if enemiesSpawned < NUMBER_OF_ENEMIES:
 		if checkFreeSpawnPoint():
 			var spawnPoints = freeSpawnPoints()

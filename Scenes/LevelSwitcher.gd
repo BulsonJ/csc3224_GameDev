@@ -20,6 +20,9 @@ onready var deathTimer = $Timer_Loss
 onready var _transition_rect := $ScreenTransitionRect
 onready var fadeTimer = $Timer_Fade
 
+var rng = RandomNumberGenerator.new()
+export (Array, NodePath) var arenas = []
+
 signal round_start()
 signal round_over()
 
@@ -31,6 +34,11 @@ func _ready():
 	startRoundLabel.text = "Round " + str(GameVariables.current_round) + " starting..."
 	startRoundScreen.show()
 	startRoundTimer.start(START_ROUND_DURATION)
+	
+	rng.randomize()
+	var arena = rng.randi_range(0, arenas.size())
+	if arena != 0:
+		get_node(arenas[arena - 1]).show()
 	
 	PlayerStats.health = 100
 	
