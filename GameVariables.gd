@@ -10,6 +10,8 @@ onready var MUSIC_VOLUME = 100 setget set_volume_music
 
 onready var enemy_amount = INITIAL_ENEMIES
 
+var cheat_GodMode = false
+
 var current_round = 1
 
 enum difficultyLevels{

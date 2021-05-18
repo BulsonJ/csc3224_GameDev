@@ -25,10 +25,11 @@ func _player_death():
 	queue_free()
 
 func _on_Hurtbox_area_entered(area):
-	stats.health -= area.damage
-	hurtbox.start_invincibility(1)
-	hurtbox.create_hit_effect()
-	$Sound_Hurt.play()
+	if GameVariables.cheat_GodMode == false:
+		stats.health -= area.damage
+		hurtbox.start_invincibility(1)
+		hurtbox.create_hit_effect()
+		$Sound_Hurt.play()
 
 func _on_StateMachine_state_changed(new_state):
 	$StateLabel.text=new_state.get_name()

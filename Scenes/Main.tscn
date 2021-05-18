@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Enemies/Spawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
@@ -13,6 +13,11 @@
 [ext_resource path="res://Scenes/LevelSwitcher.tscn" type="PackedScene" id=11]
 [ext_resource path="res://HUD/Debug.gd" type="Script" id=12]
 [ext_resource path="res://Environment/wall_tileset.tres" type="TileSet" id=13]
+[ext_resource path="res://HUD/Button_GodMode_Clicked.png" type="Texture" id=14]
+[ext_resource path="res://HUD/Button_GodMode.png" type="Texture" id=15]
+[ext_resource path="res://HUD/Button_PlusRound.png" type="Texture" id=16]
+[ext_resource path="res://HUD/Button_PlusRound_Clicked.png" type="Texture" id=17]
+[ext_resource path="res://Utilities/m3x6.ttf" type="DynamicFontData" id=18]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
@@ -46,6 +51,10 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 0/z_index = 0
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
+font_data = ExtResource( 18 )
 
 [node name="Main" type="Node2D"]
 
@@ -119,14 +128,45 @@ __meta__ = {
 visible = false
 
 [node name="Button_Debug" type="CheckButton" parent="Debug"]
-margin_left = -4.0
-margin_top = 235.0
-margin_right = 30.0
-margin_bottom = 275.0
+margin_left = 3.0
+margin_top = 36.0
+margin_right = 37.0
+margin_bottom = 76.0
 focus_mode = 0
 custom_icons/off = ExtResource( 9 )
 custom_icons/on = ExtResource( 7 )
 enabled_focus_mode = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cheat_Buttons" type="Control" parent="Debug"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button_GodMode" type="CheckButton" parent="Debug/Cheat_Buttons"]
+margin_left = -1.0
+margin_top = 58.0
+margin_right = 27.0
+margin_bottom = 98.0
+focus_mode = 0
+custom_icons/off = ExtResource( 15 )
+custom_icons/on = ExtResource( 14 )
+enabled_focus_mode = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button_PlusRound" type="CheckButton" parent="Debug/Cheat_Buttons"]
+margin_left = 19.0
+margin_top = 58.0
+margin_right = 47.0
+margin_bottom = 98.0
+custom_icons/off = ExtResource( 16 )
+custom_icons/on = ExtResource( 17 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -137,17 +177,31 @@ margin_bottom = 40.0
 
 [node name="HealthBar" parent="HUD" index="0"]
 position = Vector2( 138, 246 )
+
+[node name="Scaler" parent="HUD/HealthBar" index="0"]
 scale = Vector2( 2, 2 )
 
 [node name="Label" parent="HUD/HealthBar" index="1"]
-margin_left = 1.5
-margin_top = -3.5
-margin_right = 101.5
-margin_bottom = 10.5
+margin_left = 53.0
+margin_top = -8.0
+margin_right = 153.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 3 )
 
 [node name="Enemies_Killed" parent="HUD" index="1"]
 position = Vector2( 397, 236 )
-scale = Vector2( 2, 2 )
+
+[node name="Label" parent="HUD/Enemies_Killed" index="0"]
+margin_left = 56.0
+margin_top = -116.0
+margin_right = 96.0
+margin_bottom = -90.0
+
+[node name="Label" parent="HUD/Current_Round" index="0"]
+margin_left = 182.0
+margin_top = 5.0
+margin_right = 298.0
+margin_bottom = 19.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -168,10 +222,16 @@ visible = false
 margin_right = 480.0
 margin_bottom = 97.0
 
+[node name="Label" parent="LevelSwitcher/StartRound_Screen" index="0"]
+margin_top = 162.0
+margin_bottom = 176.0
+
 [connection signal="enemy_spawned" from="Spawner" to="LevelSwitcher" method="_on_Spawner_enemy_spawned"]
-[connection signal="player_dead" from="World/YSort/Player" to="LevelSwitcher" method="_on_Player_player_dead"]
 [connection signal="player_dead" from="World/YSort/Player" to="Debug" method="_on_Player_player_dead"]
+[connection signal="player_dead" from="World/YSort/Player" to="LevelSwitcher" method="_on_Player_player_dead"]
 [connection signal="toggled" from="Debug/Button_Debug" to="Debug" method="_on_Button_Debug_toggled"]
+[connection signal="toggled" from="Debug/Cheat_Buttons/Button_GodMode" to="Debug" method="_on_Button_GodMode_toggled"]
+[connection signal="toggled" from="Debug/Cheat_Buttons/Button_PlusRound" to="Debug" method="_on_Button_PlusRound_toggled"]
 [connection signal="round_start" from="LevelSwitcher" to="Spawner" method="_on_LevelSwitcher_round_start"]
 
 [editable path="Spawner"]

@@ -18,7 +18,6 @@ func _physics_process(delta):
 	player.velocity = player.move_and_slide(player.velocity, Vector2.UP)
 	
 	if input_vector != Vector2.ZERO:
-		player.direction = input_vector.x
 		state_machine.changeState("Move")
 	if Input.is_action_just_pressed("attack"):
 		state_machine.changeState("Attack")

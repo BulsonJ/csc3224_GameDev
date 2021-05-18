@@ -7,6 +7,9 @@ onready var character = get_node("../World/YSort/Player")
 onready var characterDebug = character.get_node("StateLabel")
 onready var enemies = get_node("../World/YSort/Walls")
 onready var health_label = get_node("../HUD/HealthBar/Label")
+onready var cheat_buttons = $Cheat_Buttons
+
+onready var levelSwitch = get_node("../LevelSwitcher")
 
 var characterDead = false
 
@@ -20,12 +23,24 @@ func _input(event):
 	elif event.is_action_pressed("debug_show") && hud.debug_overlay == true:
 		hud.debug_overlay = false
 		$Button_Debug.pressed = false
+	
+	if event.is_action_pressed("godmode") && GameVariables.cheat_GodMode == false:
+		GameVariables.cheat_GodMode = true
+		$Cheat_Buttons/Button_GodMode.pressed = true
+	elif event.is_action_pressed("godmode") && GameVariables.cheat_GodMode == true:
+		GameVariables.cheat_GodMode = false
+		$Cheat_Buttons/Button_GodMode.pressed = false
+		
+	if event.is_action_pressed("plusRound"):
+		levelSwitch.end_round()
+		$Cheat_Buttons/Button_GodMode.pressed = true
 
 func _process(delta):
 	
 	if hud.debug_overlay == false:
 		perfDisplay.hide()
 		health_label.hide()
+		cheat_buttons.hide()
 		if characterDead == false:
 			characterDebug.hide()
 		for enemy in enemies.get_children():
@@ -36,6 +51,7 @@ func _process(delta):
 	else:
 		perfDisplay.show()
 		health_label.show()
+		cheat_buttons.show()
 		if characterDead == false:
 			characterDebug.show()
 		for enemy in enemies.get_children():
@@ -53,3 +69,12 @@ func _process(delta):
 
 func _on_Player_player_dead():
 	characterDead = true
+
+
+func _on_Button_GodMode_toggled(button_pressed):
+	GameVariables.cheat_GodMode = button_pressed
+
+
+func _on_Button_PlusRound_toggled(button_pressed):
+	if button_pressed == true:
+		levelSwitch.end_round()

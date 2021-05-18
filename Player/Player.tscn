@@ -262,11 +262,11 @@ tracks/1/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="CapsuleShape2D" id=23]
+[sub_resource type="CapsuleShape2D" id=8]
 radius = 5.0
 height = 8.0
 
-[sub_resource type="CapsuleShape2D" id=24]
+[sub_resource type="CapsuleShape2D" id=9]
 radius = 3.0
 height = 8.0
 
@@ -308,7 +308,7 @@ script = ExtResource( 8 )
 
 [node name="CollisionShape2D" parent="HitboxPivot/SwordHitbox" index="0"]
 position = Vector2( 7, 0 )
-shape = SubResource( 23 )
+shape = SubResource( 8 )
 disabled = true
 
 [node name="Hurtbox" parent="." instance=ExtResource( 6 )]
@@ -317,7 +317,7 @@ collision_layer = 4
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2( 0, -7 )
-shape = SubResource( 24 )
+shape = SubResource( 9 )
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 2 )

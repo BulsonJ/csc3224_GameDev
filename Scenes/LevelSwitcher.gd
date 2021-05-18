@@ -54,10 +54,13 @@ func _on_Enemy_Killed():
 	enemyKilled += 1
 	Achievements.enemies_killed += 1
 	if enemyKilled == GameVariables.enemy_amount:
-		emit_signal("round_over")
-		endRoundTimer.start(END_ROUND_DURATION)
-		fadeTimer.start(END_ROUND_DURATION - 1)
-		endRoundScreen.show()
+		end_round()
+		
+func end_round():
+	emit_signal("round_over")
+	endRoundTimer.start(END_ROUND_DURATION)
+	fadeTimer.start(END_ROUND_DURATION - 1)
+	endRoundScreen.show()
 
 func _on_Spawner_enemy_spawned():
 	var enemyObject = enemies.get_child(enemies.get_child_count() - 1)
