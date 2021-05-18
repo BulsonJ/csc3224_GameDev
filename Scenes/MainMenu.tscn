@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Utilities/m3x6.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scenes/MainMenu.gd" type="Script" id=2]
@@ -26,6 +26,10 @@ expand_margin_bottom = 10.0
 [sub_resource type="DynamicFont" id=4]
 size = 32
 font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxLine" id=5]
+color = Color( 1, 1, 1, 1 )
+vertical = true
 
 [node name="MainMenu" type="MarginContainer"]
 anchor_right = 1.0
@@ -405,3 +409,184 @@ margin_bottom = 26.0
 rect_min_size = Vector2( 60, 0 )
 custom_fonts/font = SubResource( 4 )
 text = "< 100 "
+
+[node name="HelpMenu" type="CenterContainer" parent="."]
+visible = false
+margin_right = 480.0
+margin_bottom = 270.0
+
+[node name="PanelContainer" type="PanelContainer" parent="HelpMenu"]
+margin_left = 238.0
+margin_top = 133.0
+margin_right = 242.0
+margin_bottom = 137.0
+custom_styles/panel = SubResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="HelpMenu/PanelContainer"]
+visible = false
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 473.0
+margin_bottom = 263.0
+color = Color( 0.356863, 0.356863, 0.356863, 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HelpMenu/PanelContainer"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 288.0
+margin_bottom = 118.0
+
+[node name="CenterContainer" type="CenterContainer" parent="HelpMenu/PanelContainer/VBoxContainer"]
+margin_right = 286.0
+margin_bottom = 26.0
+
+[node name="Label" type="Label" parent="HelpMenu/PanelContainer/VBoxContainer/CenterContainer"]
+margin_left = 76.0
+margin_right = 210.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 134, 0 )
+custom_fonts/font = SubResource( 4 )
+text = "Help:"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HelpMenu/PanelContainer/VBoxContainer"]
+margin_top = 30.0
+margin_right = 286.0
+margin_bottom = 116.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HelpMenu/PanelContainer/VBoxContainer/HBoxContainer"]
+margin_right = 156.0
+margin_bottom = 86.0
+
+[node name="MasterVolume" type="HBoxContainer" parent="HelpMenu/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_right = 156.0
+margin_bottom = 26.0
+
+[node name="Selector" type="Label" parent="HelpMenu/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/MasterVolume"]
+margin_right = 86.0
+margin_bottom = 26.0
+custom_fonts/font = SubResource( 4 )
+text = "Arrow Keys"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Volume" type="Label" parent="HelpMenu/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/MasterVolume"]
+margin_left = 90.0
+margin_right = 150.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 60, 0 )
+custom_fonts/font = SubResource( 4 )
+text = "- Move"
+
+[node name="SoundEffectVolume" type="HBoxContainer" parent="HelpMenu/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 30.0
+margin_right = 156.0
+margin_bottom = 56.0
+
+[node name="Label" type="Label" parent="HelpMenu/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/SoundEffectVolume"]
+margin_right = 86.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 86, 0 )
+custom_fonts/font = SubResource( 4 )
+text = "Shift"
+align = 2
+
+[node name="Volume" type="Label" parent="HelpMenu/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/SoundEffectVolume"]
+margin_left = 90.0
+margin_right = 150.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 60, 0 )
+custom_fonts/font = SubResource( 4 )
+text = "- Dash"
+
+[node name="MusicVolume" type="HBoxContainer" parent="HelpMenu/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 60.0
+margin_right = 156.0
+margin_bottom = 86.0
+
+[node name="Label" type="Label" parent="HelpMenu/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/MusicVolume"]
+margin_right = 86.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 86, 0 )
+custom_fonts/font = SubResource( 4 )
+text = "Space"
+align = 2
+
+[node name="Volume" type="Label" parent="HelpMenu/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/MusicVolume"]
+margin_left = 90.0
+margin_right = 156.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 60, 0 )
+custom_fonts/font = SubResource( 4 )
+text = "- Attack"
+
+[node name="VSeparator" type="VSeparator" parent="HelpMenu/PanelContainer/VBoxContainer/HBoxContainer"]
+margin_left = 160.0
+margin_right = 164.0
+margin_bottom = 86.0
+custom_styles/separator = SubResource( 5 )
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HelpMenu/PanelContainer/VBoxContainer/HBoxContainer"]
+margin_left = 168.0
+margin_right = 286.0
+margin_bottom = 86.0
+
+[node name="MasterVolume" type="HBoxContainer" parent="HelpMenu/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_right = 118.0
+margin_bottom = 26.0
+
+[node name="Selector" type="Label" parent="HelpMenu/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer2/MasterVolume"]
+margin_right = 8.0
+margin_bottom = 26.0
+custom_fonts/font = SubResource( 4 )
+text = "K"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Volume" type="Label" parent="HelpMenu/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer2/MasterVolume"]
+margin_left = 12.0
+margin_right = 118.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 60, 0 )
+custom_fonts/font = SubResource( 4 )
+text = "- Stats/Debug"
+
+[node name="SoundEffectVolume" type="HBoxContainer" parent="HelpMenu/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_top = 30.0
+margin_right = 118.0
+margin_bottom = 56.0
+
+[node name="Label" type="Label" parent="HelpMenu/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer2/SoundEffectVolume"]
+margin_right = 8.0
+margin_bottom = 26.0
+custom_fonts/font = SubResource( 4 )
+text = "G"
+
+[node name="Volume" type="Label" parent="HelpMenu/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer2/SoundEffectVolume"]
+margin_left = 12.0
+margin_right = 90.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 60, 0 )
+custom_fonts/font = SubResource( 4 )
+text = "- GodMode"
+
+[node name="MusicVolume" type="HBoxContainer" parent="HelpMenu/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_top = 60.0
+margin_right = 118.0
+margin_bottom = 86.0
+
+[node name="Label" type="Label" parent="HelpMenu/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer2/MusicVolume"]
+margin_right = 8.0
+margin_bottom = 26.0
+custom_fonts/font = SubResource( 4 )
+text = "I"
+
+[node name="Volume" type="Label" parent="HelpMenu/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer2/MusicVolume"]
+margin_left = 12.0
+margin_right = 108.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 60, 0 )
+custom_fonts/font = SubResource( 4 )
+text = "- Skip Round"

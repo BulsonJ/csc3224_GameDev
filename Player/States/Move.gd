@@ -19,6 +19,7 @@ func _physics_process(delta):
 		# If input x is not 0, check if direction changed
 		if input_vector.x != 0:
 			player.direction = input_vector.x
+			player.swordHitbox.knockback_vector = input_vector
 			
 			if player.direction < 0:
 				player.animationPlayer.play("run_left")

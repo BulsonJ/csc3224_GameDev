@@ -22,6 +22,9 @@ onready var option_volume_selector_one = $OptionsMenu/PanelContainer/VBoxContain
 onready var option_volume_selector_two = $OptionsMenu/PanelContainer/VBoxContainer/SoundEffectVolume/Volume
 onready var option_volume_selector_three = $OptionsMenu/PanelContainer/VBoxContainer/MusicVolume/Volume
 
+onready var help_menu = $HelpMenu
+onready var help_menu_open = false
+
 var current_selection = 0
 var current_selection_difficulty = 0
 var current_selection_option = 0
@@ -39,7 +42,7 @@ func _ready():
 	handle_selection_options(2, 0)
 	
 func _input(event):
-	if difficulty_choosing == false and option_menu_open == false:
+	if difficulty_choosing == false and option_menu_open == false and help_menu_open == false:
 		if event.is_action_pressed("ui_down") and current_selection < 3:
 			current_selection += 1
 			set_current_selection(current_selection)
@@ -62,6 +65,11 @@ func _input(event):
 		elif event.is_action_pressed("ui_cancel"):
 			option_menu_open = false
 			option_menu.hide()
+	elif help_menu_open == true:
+		if event is InputEventKey:
+			if event.pressed:
+				help_menu_open = false
+				help_menu.hide()
 	else:
 		if event.is_action_pressed("ui_down") and current_selection_difficulty < 3:
 			current_selection_difficulty += 1
@@ -124,6 +132,9 @@ func handle_selection(_current_selection):
 		difficulty_choosing = true
 		difficulty_select.show()
 		menu_selector.modulate = Color(0.65,0.65,0.65)
+	elif _current_selection == 1:
+		help_menu_open = true
+		help_menu.show()
 	elif _current_selection == 2:
 		option_menu_open = true
 		option_menu.show()

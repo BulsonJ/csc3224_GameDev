@@ -1,0 +1,55 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Sounds/enemy_death.mp3" type="AudioStream" id=1]
+[ext_resource path="res://Enemies/Enemy2.png" type="Texture" id=2]
+[ext_resource path="res://Utilities/font.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Effects/Effect.gd" type="Script" id=4]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 144, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 48, 144, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 96, 144, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 144, 144, 48, 48 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "Animate",
+"speed": 5.0
+} ]
+
+[node name="Spearman_DeathEffect" type="AnimatedSprite"]
+frames = SubResource( 5 )
+animation = "Animate"
+script = ExtResource( 4 )
+
+[node name="Sound_Death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = -20.0
+autoplay = true
+
+[node name="StateLabel" type="Label" parent="."]
+margin_left = -20.0
+margin_top = -28.0
+margin_right = 20.0
+margin_bottom = -14.0
+grow_horizontal = 2
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Dead"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -13,6 +13,7 @@ var roll_vector = Vector2.RIGHT
 var stats = PlayerStats
 
 onready var hurtbox = $Hurtbox
+onready var swordHitbox = $HitboxPivot/SwordHitbox
 
 onready var animationPlayer = $AnimationPlayer
 
@@ -20,6 +21,7 @@ signal player_dead
 
 func _ready():
 	stats.connect("no_health", self, "_player_death")
+	swordHitbox.knockback_vector = Vector2(0,direction)
 	
 func _player_death():
 	emit_signal("player_dead")

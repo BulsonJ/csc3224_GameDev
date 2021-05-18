@@ -152,7 +152,7 @@ tracks/4/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=12]
 resource_name = "dash_left"
 length = 0.7
 tracks/0/type = "value"
@@ -194,7 +194,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=13]
 resource_name = "dash_right"
 length = 0.7
 tracks/0/type = "value"
@@ -236,7 +236,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=14]
 length = 0.1
 loop = true
 tracks/0/type = "value"
@@ -264,7 +264,7 @@ tracks/1/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=15]
 length = 0.1
 loop = true
 tracks/0/type = "value"
@@ -292,7 +292,7 @@ tracks/1/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=16]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -320,7 +320,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=17]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -348,11 +348,11 @@ tracks/1/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="CapsuleShape2D" id=8]
+[sub_resource type="CapsuleShape2D" id=10]
 radius = 5.0
 height = 8.0
 
-[sub_resource type="CapsuleShape2D" id=9]
+[sub_resource type="CapsuleShape2D" id=11]
 radius = 3.0
 height = 8.0
 
@@ -361,7 +361,7 @@ collision_layer = 2
 script = ExtResource( 5 )
 ACCELERATION = 96
 MAX_SPEED = 32
-ROLL_SPEED = 48
+ROLL_SPEED = 40
 FRICTION = 200
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -380,12 +380,12 @@ shape = SubResource( 1 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/attack_left = SubResource( 2 )
 anims/attack_right = SubResource( 3 )
-anims/dash_left = SubResource( 10 )
-anims/dash_right = SubResource( 11 )
-anims/idle_left = SubResource( 4 )
-anims/idle_right = SubResource( 5 )
-anims/run_left = SubResource( 6 )
-anims/run_right = SubResource( 7 )
+anims/dash_left = SubResource( 12 )
+anims/dash_right = SubResource( 13 )
+anims/idle_left = SubResource( 14 )
+anims/idle_right = SubResource( 15 )
+anims/run_left = SubResource( 16 )
+anims/run_right = SubResource( 17 )
 
 [node name="HitboxPivot" type="Position2D" parent="."]
 position = Vector2( 0, -5 )
@@ -397,7 +397,7 @@ script = ExtResource( 8 )
 
 [node name="CollisionShape2D" parent="HitboxPivot/SwordHitbox" index="0"]
 position = Vector2( 7, 0 )
-shape = SubResource( 8 )
+shape = SubResource( 10 )
 disabled = true
 
 [node name="Hurtbox" parent="." instance=ExtResource( 6 )]
@@ -406,7 +406,7 @@ collision_layer = 4
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2( 0, -7 )
-shape = SubResource( 9 )
+shape = SubResource( 11 )
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -424,6 +424,7 @@ script = ExtResource( 14 )
 [node name="Sound_Dash" type="AudioStreamPlayer" parent="StateMachine/Dash"]
 stream = ExtResource( 15 )
 volume_db = -20.0
+bus = "Effects"
 
 [node name="Attack" type="Node" parent="StateMachine"]
 script = ExtResource( 9 )

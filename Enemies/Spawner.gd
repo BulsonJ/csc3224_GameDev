@@ -1,11 +1,13 @@
 extends Node
 
 export (PackedScene) var ENEMY_OBJECT
+export (PackedScene) var ENEMY_OBJECT_2
 export var spawnNode := NodePath()
 
 
 onready var SPAWN_TIME = GameVariables.ENEMY_SPAWN_TIMER
 onready var NUMBER_OF_ENEMIES = GameVariables.enemy_amount
+
 
 onready var spawnPoints = $SpawnPoints
 onready var timer = $Timer
@@ -18,11 +20,15 @@ var spawnEnemy = true
 signal enemy_spawned()
 
 func spawn(spawnPoint):
-	var enemy_instance = ENEMY_OBJECT.instance()
+	enemiesSpawned += 1
+	var enemy_instance
+	if enemiesSpawned != 0 and enemiesSpawned % 5 == 0 :
+		enemy_instance = ENEMY_OBJECT_2.instance()
+	else:
+		enemy_instance = ENEMY_OBJECT.instance()
 	enemy_instance.set_name("Fighter")
 	enemy_instance.position = spawnPoint.position
 	self.get_node(spawnNode).add_child(enemy_instance)
-	enemiesSpawned += 1
 	timer.start(SPAWN_TIME)
 	emit_signal("enemy_spawned")
 	
